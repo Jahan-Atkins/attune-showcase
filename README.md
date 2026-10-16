@@ -24,11 +24,31 @@ I started Attune in August 2026 as a solo founder. 15 instructors have committed
 
 ## Screenshots
 
-| Customer sign up | Instructor log in | Admin log in |
-|---|---|---|
-| ![Customer sign up](screenshots/customer-signup.png) | ![Instructor log in](screenshots/instructor-login.png) | ![Admin log in](screenshots/admin-login.png) |
+### Instructor app
 
-Captured from the live deployment. Logged-in dashboards hold real account data, so they are shown in walkthroughs rather than here.
+| Home | Client requests | Clients |
+|---|---|---|
+| ![Instructor home](screenshots/instructor-home.png) | ![Incoming client requests](screenshots/instructor-client-requests.png) | ![Client list](screenshots/instructor-clients.png) |
+
+| Client details | Profile | Resource library |
+|---|---|---|
+| ![Client details](screenshots/instructor-client-detail.png) | ![Instructor profile](screenshots/instructor-profile.png) | ![Resource library](screenshots/instructor-resources.png) |
+
+The client requests queue shows two pending customer requests, each with its package, distance, price, and the customer's notes. Confirming one is what turns it into a booking.
+
+### Customer app
+
+| Sign up | Request sent |
+|---|---|
+| ![Customer sign up](screenshots/customer-signup.png) | ![Request sent, waiting for an instructor](screenshots/customer-request-sent.png) |
+
+### Log in screens
+
+| Instructor | Admin |
+|---|---|
+| ![Instructor log in](screenshots/instructor-login.png) | ![Admin log in](screenshots/admin-login.png) |
+
+The landing page and log in screens were captured from the live site. The logged-in screens were captured from a local copy of the app running with demo data, so every name and number in them is made up.
 
 ## What's built
 
