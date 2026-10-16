@@ -4,7 +4,7 @@ A two-sided marketplace that matches customers with private yoga and sound bath 
 
 > This is a showcase repo. The source code is private. Code walkthroughs are available on request.
 
-**Live site:** [attune-lusx.onrender.com/customer](https://attune-lusx.onrender.com/customer) (free hosting tier, so the first load can take up to a minute)
+**Live site:** [attune-lusx.onrender.com/customer](https://attune-lusx.onrender.com/customer) 
 **Contact:** jahan.atkins815@gmail.com | [linkedin.com/in/jahan-atkins-39002b419](https://linkedin.com/in/jahan-atkins-39002b419)
 
 ![Customer landing page](screenshots/customer-landing.png)
