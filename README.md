@@ -59,6 +59,12 @@ The sign-in screenshots are from an earlier version of the live site. The logged
 
 **Payment status.** Instructors can start Stripe Connect onboarding. Confirmed requests are marked payment pending. Live customer charges and instructor payouts are still ahead.
 
+## Social media automation
+
+I built Creative Studio into the Attune admin to manage short-form content for Instagram and TikTok. It brings together content briefs, video rendering, caption review, and scheduling. A person reviews and approves the exact video and caption before it can be sent for publishing.
+
+The deployed workflow can export finished videos and their breakdowns to Obsidian. The analytics integration is designed to record each post's performance after 24 hours, 72 hours, and one week. Live publishing and analytics still need the social accounts connected and the publishing integration enabled.
+
 ## Tech stack
 
 | Layer | Tools |
