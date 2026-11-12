@@ -1,25 +1,23 @@
 # Attune (Showcase)
 
-A two-sided marketplace that matches customers with private yoga and sound bath instructors for in-home, office, and event sessions in Los Angeles and Orange County.
+A marketplace for private yoga, sound baths, meditation, massage, acupuncture, and pelvic floor therapy in Los Angeles and Orange County. Attune matches customers with qualified practitioners for sessions at home, at the office, or at an event.
 
 > This is a showcase repo. The source code is private. Code walkthroughs are available on request.
 
-**Live site:** [attune-lusx.onrender.com/customer](https://attune-lusx.onrender.com/customer) 
+**Live site:** [Explore Attune](https://attune-lusx.onrender.com/customer)  
 **Contact:** jahan.atkins815@gmail.com | [linkedin.com/in/jahan-atkins-39002b419](https://linkedin.com/in/jahan-atkins-39002b419)
-
-![Customer landing page](screenshots/customer-landing.png)
 
 ## Why I built it
 
-My mom is a yoga teacher, and as a small independent instructor she struggled to find steady work. Studios pay teachers a flat class rate, and general gig sites charge instructors for leads whether or not they ever get paid. Attune flips that: customers say what they want, nearby qualified instructors see the request, and the platform only earns money when a session is actually booked.
+My mom is a yoga teacher, and as a small independent instructor she struggled to find steady work. Studios pay teachers a flat class rate, and general gig sites charge instructors for leads whether or not they ever get paid. With Attune, customers say what they want and nearby qualified instructors can accept the request.
 
-I started Attune in August 2026 as a solo founder. 15 instructors have committed to the platform ahead of launch.
+I started Attune in August 2026 as a solo founder.
 
 ## How it works
 
-1. **The customer describes what they want.** Yoga or sound bath, a package or a specific scheduled lesson, the days and times that work, and how long the lesson should be. There are no profiles to scroll through.
+1. **The customer describes what they want.** They choose a practice, a package or a scheduled session, and the times that work for them.
 2. **The request is broadcast, not assigned.** It goes into the queue of every instructor who matches on specialty, is within their own travel-distance preference, and (for scheduled lessons) has a real opening that fits the full lesson length.
-3. **An instructor confirms.** Only at that moment is the booking finalized, and the customer automatically becomes a client in that instructor's dashboard. Contact info is exchanged only with the instructor who confirmed, never with everyone who saw the request.
+3. **An instructor confirms.** Only at that moment is the booking finalized, and the customer becomes a client in that instructor's dashboard. Attune shares contact details with the confirming instructor.
 4. **After the session**, the customer can leave a review, rebook the same instructor, or set up a standing weekly booking.
 
 ## Screenshots
@@ -48,7 +46,7 @@ The client requests queue shows two pending customer requests, each with its pac
 |---|---|
 | ![Instructor log in](screenshots/instructor-login.png) | ![Admin log in](screenshots/admin-login.png) |
 
-The landing page and log in screens were captured from the live site. The logged-in screens were captured from a local copy of the app running with demo data, so every name and number in them is made up.
+The sign-in screenshots are from an earlier version of the live site. The logged-in screens use fictional demo data. The live customer site shows the current landing page.
 
 ## What's built
 
@@ -57,19 +55,21 @@ The landing page and log in screens were captured from the live site. The logged
 - **Instructor app:** clients, session listings, weekly availability, a map of incoming client requests, profile and specialties, reviews, recurring series, and Stripe Connect payout onboarding.
 - **Admin app:** platform metrics, account suspension, force-cancelling requests, approving client deletions, verifying clinical specialties, and FAQ management.
 
-**Native iOS app** in SwiftUI (separate repo) with customer and instructor roles, tested with XCUITest in Xcode.
+**Native iOS app** built in SwiftUI with customer and instructor roles and XCUITest coverage. App Store release is on the roadmap.
+
+**Payment status.** Instructors can start Stripe Connect onboarding. Confirmed requests are marked payment pending. Live customer charges and instructor payouts are still ahead.
 
 ## Tech stack
 
 | Layer | Tools |
 |---|---|
 | Backend | Python, FastAPI, Pydantic |
-| Database | SQLAlchemy, Alembic (23 migrations), SQLite locally, Supabase Postgres in production |
+| Database | SQLAlchemy, Alembic, SQLite locally, Supabase Postgres in production |
 | Auth | JWT with typed tokens, bcrypt, Google sign-in, password reset by email |
 | Payments | Stripe Connect Express onboarding |
 | Web frontends | Vanilla HTML, CSS, and JavaScript (no build step), Leaflet maps, installable PWA |
 | iOS | SwiftUI, XCUITest |
-| Testing | pytest (431 passing tests), GitHub Actions |
+| Testing | pytest, GitHub Actions |
 | Hosting | Render, deployed from a Render Blueprint |
 
 ## Architecture
@@ -93,15 +93,13 @@ iOS app (SwiftUI) -/           +-- JWT auth (instructor / customer / admin)
 
 **Security work.** A security audit fixed a reflected XSS in password reset, email-enumeration timing differences, a JWT crash, Stripe return-URL host injection, and SQL LIKE wildcard injection in admin search, and added security headers (HSTS, frame and object restrictions). Login and signup are rate limited, interactive API docs are disabled in production, and every production table has Postgres row-level security enabled.
 
-**Payments done safely.** The API never receives card numbers, which keeps it out of the heaviest PCI scope. Card entry will be handled by Stripe's own UI, and the server only ever sees Stripe IDs. Instructors already onboard to Stripe Connect so they are payout-ready.
-
 **Simulation testing.** I ran a 14-persona simulated customer test against the app. It found double booking, crashes on malformed times, recurring-series cancellation bugs, duplicate-signup races, and missing input-length limits, all of which were fixed and locked in with regression tests.
 
 **Deploy pipeline.** Every push runs the full pytest suite plus a job that applies all migrations to a real Postgres 17 database, since some migrations behave differently on Postgres than on SQLite. Render migrates the schema before new code goes live.
 
 ## Business model
 
-A split fee on each booking: a small service fee on the customer side and a commission on the instructor side, so Attune earns only when an instructor gets paid.
+Attune plans to earn revenue on completed bookings.
 
 ## What I learned
 
@@ -113,6 +111,5 @@ A split fee on each booking: a small service fee on the customer side and a comm
 
 ## Roadmap
 
-- Real customer payments through Stripe, holding funds until a session is completed
-- App Store launch for the iOS app
-- Mat Pilates as a new category after launch
+- Enable live customer payments and instructor payouts through Stripe
+- Release the iOS app on the App Store
